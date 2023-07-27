@@ -1,0 +1,29 @@
+// Primary Colors
+$primary-violet: #5964e0;
+$primary-light-violet: #939bf4;
+$primary-very-dark-blue: #19202d;
+$primary-midnight: #121721;
+
+// Secondary Colors
+$secondary-white: #ffffff;
+$secondary-light-gray: #f4f6f8;
+$secondary-gray: #9daec2;
+$secondarty-dark-gray: #6e8098;
+
+// Page Breakdowns
+$desktop-max-width: 1440px;
+
+// App Widths
+$desktop-app-width: 1140px;
+
+:root {
+  // Light Theme
+  --background: $secondary-light-gray;
+  --text: $primary-light-violet;
+  
+  // Dark Theme
+  &[data-theme='dark'] {
+    --background: $primary-midnight;
+    --text: $secondarty-dark-gray;
+  } 
+}
