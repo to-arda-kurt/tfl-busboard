@@ -1,9 +1,48 @@
-import Header from "../../views/Header";
+
 
 export default function Home() {
   return (
     <>
-    <Header />
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
+    <p>HOMEPAGE</p>
     </>
   )
 }

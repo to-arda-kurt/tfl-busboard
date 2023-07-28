@@ -1,5 +1,7 @@
+import logo from '../../../assets/logos/SVG/busboard-logo.svg'
+
 export default function Logo() {
   return (
-    <div>Logo</div>
+    <img className='logo' src={logo} alt="BusBoard Logo" />
   )
 }

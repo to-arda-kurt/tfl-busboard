@@ -1,3 +1,5 @@
+@use '../abstracts/mixins' as *;
+
 html {
   // 1 REM 
   font-size: 62.5%;
@@ -9,7 +11,17 @@ html {
   margin: 0;
 }
 
-a {
+a{
     color: inherit;
     text-decoration: none;
   }
+
+li {
+  list-style: none;
+}
+
+main{ 
+  @include app-witdh;
+  margin: auto 1rem;
+  margin-top: 10rem;
+}

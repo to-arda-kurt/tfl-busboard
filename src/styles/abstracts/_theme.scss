@@ -1,20 +1,21 @@
 // Primary Colors
-$primary-violet: #5964e0;
-$primary-light-violet: #939bf4;
-$primary-very-dark-blue: #19202d;
-$primary-midnight: #121721;
+$primary-bus-red: rgb(225,37,27);
+$primary-tfl-blue: rgb(0,15,159);
+$primary-tfl-yellow: rgb(255, 205,0);
+$primary-tfl-green: rgb(0,121,52);
+
 
 // Secondary Colors
 $secondary-white: #ffffff;
 $secondary-light-gray: #f4f6f8;
-$secondary-gray: #9daec2;
-$secondarty-dark-gray: #6e8098;
+$secondary-gray: #dcdcdc;
+$secondarty-dark-gray: #3b3c3e;
 
 // Page Breakdowns
 $desktop-max-width: 1440px;
 
 // App Widths
-$desktop-app-width: 1140px;
+$app-body: 95vw;
 
 :root {
   // Light Theme
@@ -26,4 +27,9 @@ $desktop-app-width: 1140px;
     --background: $primary-midnight;
     --text: $secondarty-dark-gray;
   } 
+}
+
+#root{
+  max-width: $app-body;
+  margin: 0 auto;
 }

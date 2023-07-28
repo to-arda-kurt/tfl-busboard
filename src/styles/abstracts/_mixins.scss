@@ -1,0 +1,18 @@
+
+
+@mixin flex-row($gap) {
+    display: flex;
+    flex-direction: row;
+    gap: $gap;
+}
+
+@mixin flex-col($gap) {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+}
+
+@mixin app-witdh {
+    margin: 0 auto;
+    max-width: 95vw;
+}
