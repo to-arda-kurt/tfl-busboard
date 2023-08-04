@@ -1,7 +1,7 @@
-import Home from './pages/Home';
-import BusBoard from './pages/BusBoard';
+import Home from '@root/pages/Home';
+import BusBoard from '@root/pages/BusBoard';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Header from './views/Header'
+import Header from '@root/views/Header'
 function App() {
 
   return (

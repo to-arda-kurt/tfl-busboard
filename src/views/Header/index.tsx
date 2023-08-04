@@ -1,4 +1,4 @@
-import { Logo, Navigation } from "../../components/Header"
+import { Logo, Navigation } from "@root/components/Header"
 
 
 export default function Header() {

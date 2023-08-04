@@ -1,4 +1,4 @@
-import logo from '../../../assets/logos/SVG/busboard-logo.svg'
+import logo from '@root/assets/logos/SVG/busboard-logo.svg'
 
 export default function Logo() {
   return (
