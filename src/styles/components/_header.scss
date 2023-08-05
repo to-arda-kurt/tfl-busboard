@@ -9,11 +9,12 @@ header{
     background-color: $primary-tfl-blue;
     margin-top:1.5rem;
     padding: 1.5rem;
-    border-radius: 7rem;
+    border-radius: 2rem;
     color: $secondary-white;
     position: fixed;
     top: 0;
-    width: 100%
+    width: 100%;
+    z-index: 9999;
 
 }
 
