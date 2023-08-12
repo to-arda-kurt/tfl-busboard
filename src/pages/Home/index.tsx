@@ -1,33 +1,40 @@
 import { useContext, useEffect, useState } from "react";
-import { getPostcodeInfo } from '@root/api/postcode';
-
+import useUserLocation from "@root/utils/useUserLocation";
 import mainContext from "@root/context/mainContext";
 
 import Map from "@root/views/Map";
 import 'leaflet/dist/leaflet.css';
+import { useLocation } from "react-router-dom";
+
 
 
 export default function Home() {
 
   const ctx = useContext(mainContext);
-  const { get_console_log } = ctx;
+  const { get_console_log, loading } = ctx;
 
-  const [postCode, setPostCode] = useState<string>('');
-  const [alert, setAlert] = useState<string>('');
-  const [position, setPosition] = useState(null)
+  const userLocation = useUserLocation()
 
+  console.log(userLocation)
+
+  const [position, setPosition] = useState({
+    lat: 0,
+    lng: 0
+  });
 
   useEffect(() => {
+    console.log(userLocation)
 
-  }, []);
+    setPosition((prevState) => ({
+      ...prevState,
+      lat: userLocation.latitude,
+      lng: userLocation.longitude
+    }));
+
+  }, [userLocation])
 
 
   console.log(position)
-
-  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setPostCode(e.target.value);
-    get_console_log();
-  }
 
   return (
     <>

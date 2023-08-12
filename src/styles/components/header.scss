@@ -1,0 +1,104 @@
+@use '../abstracts/mixins' as *;
+@use '../abstracts/theme' as *;
+
+header {
+    @include flex-row(2rem);
+    align-items: center;
+    justify-content: space-between;
+    background-color: $primary-tfl-blue;
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 2rem;
+    color: $secondary-white;
+    position: fixed;
+    top: 0;
+    z-index: 9999;
+}
+
+.Search {
+
+    position: relative;
+    overflow: hidden;
+
+
+    input {
+        width: 100%;
+        height: 100%;
+        color: #fff;
+        padding-top: 20px;
+        border: none;
+        background: none;
+
+        &:focus {
+            outline: none;
+
+            + {
+                .Search_Name {
+                    .Search_Label {
+                        transform: translateY(-140%);
+                        font-size: 0.8rem;
+                        left: 0px;
+                        color: $primary-bus-red;
+                    }
+
+                    &::after {
+                        transform: translateX(0%);
+                    }
+                }
+            }
+        }
+
+        &:valid {
+            + {
+                .Search_Name {
+                    .Search_Label {
+                        transform: translateY(-140%);
+                        font-size: 0.8rem;
+                        left: 0px;
+                        color: $primary-bus-red;
+                    }
+
+                    &::after {
+                        transform: translateX(0%);
+                    }
+                }
+            }
+        }
+    }
+
+    label {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        border-bottom: 1px solid white;
+        z-index: 999999999;
+
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            border-bottom: 3px solid $primary-bus-red;
+            transform: translateX(-100%);
+            transition: all 0.3s ease;
+        }
+    }
+}
+
+.Search_Label {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    padding-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+.logo {
+    height: 4rem;
+}

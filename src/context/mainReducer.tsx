@@ -1,19 +1,21 @@
 /* eslint-disable react-refresh/only-export-components */
-import {
-    GET_POSTCODE,
-    GET_LOCATION,
-    GET_BUSES,
-    GET_DISRUPTIONS
-} from '@root/context/types'
+import { Types } from '@root/context/types'
+import type { Action } from '@root/types/context';
 
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default (state, action) => {
+export default (state, action: Action) => {
     switch (action.type) {
-        case GET_POSTCODE:
+        case Types.SetPostcode:
             return {
                 ...state,
                 postcode: action.payload,
+            };
+
+        case Types.SetLoading:
+            return {
+                ...state,
+                loading: action.payload,
             };
 
         default:
