@@ -3,7 +3,6 @@
 
 header{
     @include flex-row(1rem);
-    @include app-witdh;
     align-items: center;
     justify-content: space-between;
     background-color: $primary-tfl-blue;
@@ -13,9 +12,14 @@ header{
     color: $secondary-white;
     position: fixed;
     top: 0;
-    width: 100%;
     z-index: 9999;
+}
 
+input {
+    z-index: 99999;
+    position: absolute;
+    top: 20px;
+    left: 20px;
 }
 
 nav ul {
@@ -23,6 +27,11 @@ nav ul {
 
 }
 
+.input 
+
+h1 {
+    z-index: 99999;
+}
 .logo{
     height: 4rem;
 }
