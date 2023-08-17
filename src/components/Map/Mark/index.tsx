@@ -7,11 +7,12 @@ const ICON = icon({
 })
 
 
-function Mark({ position }) {
+
+function Mark({ center } : Props) {
 
 
     return (
-        <Marker position={position} icon={ICON}>
+        <Marker position={center} icon={ICON}>
             <Popup>Hello world</Popup>
         </Marker>
     )

@@ -1,4 +1,4 @@
-export interface IMainContext {
+export type MainContextType = {
     lat: string,
     long: string,
     busses: Array,
@@ -7,7 +7,10 @@ export interface IMainContext {
     get_console_log: () => void,
     setPostcode: (string) => void,
     setLoading: (boolean) => void,
+    setCenterCoordinates: (Center) => void,
+    setPositionCoordinates: (Center) => void,
     center: Center,
+    position: number[]
 }
 
 export type Center = {
@@ -19,6 +22,8 @@ export type Center = {
 export type Action = 
     | {type: 'SET_POSTCODE', payload: string} 
     | {type: 'SET_LOADING', payload: boolean}
+    | {type: 'SET_CENTER', payload: {lat: number; lng: number}}
+    | {type: 'SET_POSITION', payload: number[]}
 
     
 

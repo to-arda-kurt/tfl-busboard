@@ -18,6 +18,17 @@ export default (state, action: Action) => {
                 loading: action.payload,
             };
 
+        case Types.SetCenter:
+            return {
+                ...state,
+                center: action.payload,
+            };
+
+            case Types.SetPosition:
+            return {
+                ...state,
+                position: action.payload,
+            };
         default:
             return state;
     }
