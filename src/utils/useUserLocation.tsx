@@ -6,7 +6,9 @@ function useUserLocation() {
         latitude: number,
         longitude: number,
         accuracy: number,
+        loaded: boolean,
         errors: ILocationError
+
     }
 
     interface ILocationError{
@@ -18,6 +20,7 @@ function useUserLocation() {
         latitude: 0,
         longitude: 0,
         accuracy: 0,
+        loaded: false,
         errors : {
             code: '',
             message: ''
@@ -41,6 +44,7 @@ function useUserLocation() {
             latitude: coordinate.latitude,
             longitude: coordinate.longitude,
             accuracy: coordinate.accuracy,
+            loaded: true,
         })
     }
 
@@ -51,7 +55,8 @@ function useUserLocation() {
             errors : {
                 code: error.code,
                 message: error.message
-            }
+            },
+            loaded: false
         })
     }
 

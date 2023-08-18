@@ -1,23 +1,16 @@
-import { MapContainer, TileLayer, useMap, useMapEvent, useMapEvents } from 'react-leaflet'
+import { MapContainer, TileLayer } from 'react-leaflet'
 import useUserLocation from "@root/utils/useUserLocation";
-import Mark from '@root/components/Map/Mark';
 import type { MainContextType } from '@root/types/context'
 import mainContext from '@root/context/mainContext';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect } from 'react';
+import UserLocation from '@root/components/Map/UserLocation';
 
-const MapController = ({ position }) => {
 
-    const map = useMapEvent('click', () => {
-        map.setView(position, 16)
-    
-    })
-    return null
-};
 
 function Map() {
 
     const ctx = useContext(mainContext) as MainContextType;
-    const { position, center, setCenterCoordinates, loading, setLoading } = ctx;
+    const { center, setCenterCoordinates, setLoading } = ctx;
 
     const userLocation = useUserLocation();
 
@@ -43,34 +36,36 @@ function Map() {
 
         }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userLocation])
+
 
 
 
     return (
         <>
-            <MapContainer
- 
-                center={center}
-                zoom={13}
-                scrollWheelZoom={true}
-                style={{
-                    height: "100vh",
-                    position: "absolute",
-                    width: "100vw",
-                    top: "0px",
-                    left: "0px",
-                }}>
+                <MapContainer
+                    center={center}
+                    zoom={13}
+                    scrollWheelZoom={true}
+                    style={{
+                        height: "100vh",
+                        position: "absolute",
+                        width: "100vw",
+                        top: "0px",
+                        left: "0px",
+                    }}>
 
-                <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                {/* <UserLocationMarker position={position} setPosition={setPosition} /> */}
-                <MapController position={position} />
-                <Mark center={center} />
+                    <TileLayer
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    {/* <UserLocationMarker position={position} setPosition={setPosition} /> */}
+                    {/* <MapController position={position} /> */}
 
-            </MapContainer>
+                    <UserLocation center={center} />
+
+                </MapContainer>
         </>
     )
 }
