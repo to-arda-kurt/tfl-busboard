@@ -1,6 +1,6 @@
-import type { IMainContext } from '@root/types/context'
+import type { MainContextType } from '@root/types/context'
 import { createContext } from 'react';
 
-const mainContext = createContext<IMainContext | null>(null);
+const mainContext = createContext<MainContextType | null>(null);
 
 export default mainContext;

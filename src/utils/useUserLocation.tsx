@@ -11,7 +11,7 @@ function useUserLocation() {
 
     }
 
-    interface ILocationError{
+    interface ILocationError {
         code: string;
         message: string;
     }
@@ -21,7 +21,7 @@ function useUserLocation() {
         longitude: 0,
         accuracy: 0,
         loaded: false,
-        errors : {
+        errors: {
             code: '',
             message: ''
         }
@@ -33,7 +33,7 @@ function useUserLocation() {
         maximumAge: 0,
     };
 
-    const success = (position) => {
+    const success: PositionCallback = (position) => {
         const coordinate = position.coords;
         // console.log("Your current position is:");
         // console.log(`Latitude : ${coordinate.latitude}`);
@@ -48,17 +48,6 @@ function useUserLocation() {
         })
     }
 
-    const errors = (error) => {
-        // console.warn(`ERROR(${error.code}): ${error.message}`);
-        setLocation({
-            ...location,
-            errors : {
-                code: error.code,
-                message: error.message
-            },
-            loaded: false
-        })
-    }
 
     useEffect(() => {
         if (navigator.geolocation) {
@@ -67,9 +56,9 @@ function useUserLocation() {
                 .then(function (result) {
                     console.log(result);
                     if (result.state === "granted") {
-                        navigator.geolocation.getCurrentPosition(success, errors, options);
+                        navigator.geolocation.getCurrentPosition(success);
                     } else if (result.state === "prompt") {
-                        navigator.geolocation.getCurrentPosition(success, errors, options);
+                        navigator.geolocation.getCurrentPosition(success);
                     } else if (result.state === "denied") {
                         //If denied then you have to show instructions to enable location
                     }

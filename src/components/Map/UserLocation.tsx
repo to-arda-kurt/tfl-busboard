@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { useMap } from "react-leaflet";
 import Mark from "./Mark";
+import type { Center } from "@root/types/context";
 
-
+type Props = {
+    center: Center;
+}
 
 const UserLocation = ({ center } : Props) => {
     const map = useMap();
@@ -12,10 +15,10 @@ const UserLocation = ({ center } : Props) => {
         map.locate({
             setView: true
         })
-        map.on('locationfound', (event) => {
+        map.on('locationfound', () => {
             setPosition(center)
         })
-    }, [map])
+    }, [center, map])
 
 
     return position
