@@ -64,8 +64,6 @@ const MainState = (props: Props) => {
     const [state, dispatch] = useReducer(mainReducer, initialState);
 
 
-
-
     return (
         <MainContext.Provider
             value={{

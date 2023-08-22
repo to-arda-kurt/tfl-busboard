@@ -4,13 +4,12 @@ export type MainContextType = {
     busses: Array,
     postcode: string,
     loading: boolean,
-    get_console_log: () => void,
+    center: Center,
+    position: number[],
     setPostcode: (postcode: string) => void,
     setLoading: (p: boolean) => void,
     setCenterCoordinates: (p: Center) => void,
     setPositionCoordinates: (p: Center) => void,
-    center: Center,
-    position: number[]
 }
 
 export type Center = {
