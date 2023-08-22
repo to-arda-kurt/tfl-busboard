@@ -5,10 +5,10 @@ export type MainContextType = {
     postcode: string,
     loading: boolean,
     get_console_log: () => void,
-    setPostcode: (string) => void,
-    setLoading: (boolean) => void,
-    setCenterCoordinates: (Center) => void,
-    setPositionCoordinates: (Center) => void,
+    setPostcode: (postcode: string) => void,
+    setLoading: (p: boolean) => void,
+    setCenterCoordinates: (p: Center) => void,
+    setPositionCoordinates: (p: Center) => void,
     center: Center,
     position: number[]
 }

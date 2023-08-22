@@ -4,12 +4,11 @@ import Mark from "./Mark";
 import type { Center } from "@root/types/context";
 
 type Props = {
-    center: Center;
+    center: Center
 }
-
-const UserLocation = ({ center } : Props) => {
+const UserLocation = ({ center }: Props) => {
     const map = useMap();
-    const [position, setPosition] = useState(null)
+    const [position, setPosition] = useState<Center | null>(null)
 
     useEffect(() => {
         map.locate({
@@ -24,7 +23,7 @@ const UserLocation = ({ center } : Props) => {
     return position
         ? (
             <>
-               <Mark center={center} />
+                <Mark center={center} />
             </>
         )
         : null

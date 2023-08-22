@@ -4,8 +4,7 @@ import type { Action } from '@root/types/context';
 import type { MainContextType } from '@root/types/context'
 
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default (state : MainContextType, action: Action) => {
+const mainReducer = (state : MainContextType, action: Action) => {
     switch (action.type) {
         case Types.SetPostcode:
             return {
@@ -34,3 +33,5 @@ export default (state : MainContextType, action: Action) => {
             return state;
     }
 };
+
+export default mainReducer;
