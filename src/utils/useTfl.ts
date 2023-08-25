@@ -1,3 +1,4 @@
+import { TFLResponse } from "@root/views/Journey";
 import { useCallback, useState } from "react";
 
 //requestConfig object contains url, method, headers, body
@@ -5,11 +6,13 @@ import { useCallback, useState } from "react";
 //Assumes working with JSON data
 
 interface RequestConfig {
-	url: string;
+	endpoint: string;
 	method?: string;
 	headers?: Headers;
 	body?: string;
 }
+
+const BASE_URL = "https://api.tfl.gov.uk";
 
 const useTfl = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -18,19 +21,26 @@ const useTfl = () => {
 	const sendRequest = useCallback(
 		async (
 			requestConfig: RequestConfig,
-			applyData: (data: string[]) => void
+			applyData: (data: any) => void
 		) => {
 			setIsLoading(true);
 			setError(null);
 			try {
 				//Check parameters are set. If not set a default GET request, empty headers and no body
-				const response = await fetch(requestConfig.url, {
-					method: requestConfig.method ? requestConfig.method : "GET",
-					headers: requestConfig.headers ? requestConfig.headers : {},
-					body: requestConfig.body
-						? JSON.stringify(requestConfig.body)
-						: null,
-				});
+				const response = await fetch(
+					BASE_URL + requestConfig.endpoint,
+					{
+						method: requestConfig.method
+							? requestConfig.method
+							: "GET",
+						headers: requestConfig.headers
+							? requestConfig.headers
+							: {},
+						body: requestConfig.body
+							? JSON.stringify(requestConfig.body)
+							: null,
+					}
+				);
 
 				if (!response.ok) {
 					throw new Error("Request failed!");

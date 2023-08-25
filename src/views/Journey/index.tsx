@@ -1,44 +1,61 @@
 import { useEffect, useState } from "react";
 
-import useTfl from "@root/hooks/useTfl";
+import useTfl from "@root/utils/useTfl";
+import { isValidPostcode } from "@root/helper/validation";
+import { JourneyItem, JourneyResponse } from "@root/types/journey";
 
-interface JourneyLeg{
-	info: string;
-}
+export interface TFLResponse {}
+
+
 
 function Journey() {
+	const [journey, setJourney] = useState<JourneyItem[]>([]);
+	const { isLoading, error, sendRequest: fetchJourney } = useTfl();
 
-	const [tasks, setTasks] = useState<JourneyLeg[]>([]);
-	
-	const { isLoading, error, sendRequest: fetchTasks } = useTfl();
+	// const [startPostCode, setStartPostcode] = useState<string | null>(null);
+	const [startPostCode, setStartPostcode] = useState<string | null>(
+		"SE1 9BG"
+	);
+
+	const handlePostcodeSet = (newPostCode: string) => {
+		if (isValidPostcode(newPostCode)) {
+			setStartPostcode(newPostCode);
+		}
+	};
 
 	useEffect(() => {
-		const transformTasks = (tasksObj:string[]) => {
-			const loadedTasks = [];
+		const transformResponse = (data: JourneyResponse) => {
+			const loadedJourneys: Array<JourneyItem> = [];
 
-			for (const line in tasksObj) {
-				loadedTasks.push({ info: line });
+			const journeys = data.journeys;
+
+			for (const line of journeys) {
+				loadedJourneys.push({
+					duration: line.duration,
+					startDateTime: line.startDateTime,
+				});
 			}
-
-			setTasks(loadedTasks);
+			setJourney(loadedJourneys);
 		};
 
-		fetchTasks(
+		fetchJourney(
 			{
-				url: "https://api.tfl.gov.uk/StopPoint/490008660N/Arrivals",
+				endpoint: `/Journey/JourneyResults/${startPostCode}/to/HA1 1QA`,
 			},
-			transformTasks
+			transformResponse
 		);
-	}, [fetchTasks]);
+	}, [fetchJourney, startPostCode]);
 
 	return (
 		<>
 			<h1>Journey Planner</h1>
-			{isLoading? <p>Loading...</p> : "" }
-			{error? <p>Error: {error}</p> : "" }
-			{tasks? <p>Results: {tasks.length}</p> : "" }
+			{isLoading ? <p>Loading...</p> : ""}
+			{error ? <p>Error: {error}</p> : ""}
+			{journey ? <p>Results: {journey.length}</p> : ""}
 
-
+			<button onClick={() => handlePostcodeSet("NW5 1TL")}>
+				Set Start Postcode
+			</button>
 		</>
 	);
 }
