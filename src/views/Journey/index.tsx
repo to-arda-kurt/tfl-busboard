@@ -6,8 +6,6 @@ import { JourneyItem, JourneyResponse } from "@root/types/journey";
 
 export interface TFLResponse {}
 
-
-
 function Journey() {
 	const [journey, setJourney] = useState<JourneyItem[]>([]);
 	const { isLoading, error, sendRequest: fetchJourney } = useTfl();
@@ -30,10 +28,7 @@ function Journey() {
 			const journeys = data.journeys;
 
 			for (const line of journeys) {
-				loadedJourneys.push({
-					duration: line.duration,
-					startDateTime: line.startDateTime,
-				});
+				loadedJourneys.push(line);
 			}
 			setJourney(loadedJourneys);
 		};
@@ -52,6 +47,20 @@ function Journey() {
 			{isLoading ? <p>Loading...</p> : ""}
 			{error ? <p>Error: {error}</p> : ""}
 			{journey ? <p>Results: {journey.length}</p> : ""}
+
+			{journey
+				? journey.map((leg) => {
+						return (
+							<ul>
+								<li>Options</li>
+								<li>{leg.duration}</li>
+								<li>{leg.fare.totalCost}</li>
+								<li>{leg.startDateTime && leg.startDateTime.toLocaleString()}</li>
+								<li>{leg.arrivalDateTime && leg.arrivalDateTime.toLocaleString()}</li>
+							</ul>
+						);
+				  })
+				: "No journey"}
 
 			<button onClick={() => handlePostcodeSet("NW5 1TL")}>
 				Set Start Postcode

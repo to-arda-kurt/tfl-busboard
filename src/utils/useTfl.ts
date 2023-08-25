@@ -26,7 +26,8 @@ const useTfl = () => {
 			setIsLoading(true);
 			setError(null);
 			try {
-				//Check parameters are set. If not set a default GET request, empty headers and no body
+				// Check set parameters
+				// If not set a default GET request, empty headers and no body
 				const response = await fetch(
 					BASE_URL + requestConfig.endpoint,
 					{
