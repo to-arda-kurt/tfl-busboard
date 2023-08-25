@@ -1,4 +1,3 @@
-import { TFLResponse } from "@root/views/Journey";
 import { useCallback, useState } from "react";
 
 //requestConfig object contains url, method, headers, body
