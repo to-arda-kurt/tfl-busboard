@@ -11,6 +11,13 @@ interface RequestConfig {
 	body?: string;
 }
 
+const TflResponseMessages: { [key: string]: string } = {
+	401: "Unauthorized Request to TFL API",
+	404: "Invalid Path in TFL Request",
+	503: "Service Unavailable. Try again",
+	504: "Server Timeout. Try again",
+};
+
 const BASE_URL = "https://api.tfl.gov.uk";
 
 const useTfl = () => {
@@ -43,7 +50,16 @@ const useTfl = () => {
 				);
 
 				if (!response.ok) {
-					throw new Error("Request failed!");
+					const responseCode = response.status.toString();
+					const customErrMsg = TflResponseMessages[responseCode];
+					if (customErrMsg) {
+						throw new Error(
+							`Request failed. Message: ${customErrMsg} Code: ${response.status}`
+						);
+					}
+					throw new Error(
+						`Request failed. Message: ${response.statusText} Code: ${response.status}`
+					);
 				}
 
 				const data = await response.json();
