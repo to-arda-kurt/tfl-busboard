@@ -27,7 +27,7 @@ const useTfl = () => {
 	const sendRequest = useCallback(
 		async (
 			requestConfig: RequestConfig,
-			applyData: (data: any) => void
+			transformResponse: (data: any) => void
 		) => {
 			setIsLoading(true);
 			setError(null);
@@ -51,12 +51,14 @@ const useTfl = () => {
 
 				if (!response.ok) {
 					const responseCode = response.status.toString();
+					// Check for custom error message from status code
 					const customErrMsg = TflResponseMessages[responseCode];
 					if (customErrMsg) {
 						throw new Error(
 							`Request failed. Message: ${customErrMsg} Code: ${response.status}`
 						);
 					}
+					// Use status code error message
 					throw new Error(
 						`Request failed. Message: ${response.statusText} Code: ${response.status}`
 					);
@@ -64,7 +66,7 @@ const useTfl = () => {
 
 				const data = await response.json();
 
-				applyData(data);
+				transformResponse(data);
 			} catch (err: unknown) {
 				if (err instanceof Error) {
 					var errorMsg = err.message || "Something went wrong!";
