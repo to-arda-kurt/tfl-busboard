@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useTfl from "@root/utils/useTfl";
 import { isValidPostcode } from "@root/helper/validation";
 import { JourneyItem, JourneyResponse } from "@root/types/journey";
+import JourneyOption from "@root/components/Journey/JourneyOption";
 
 export interface TFLResponse {}
 
@@ -44,23 +45,14 @@ function Journey() {
 	return (
 		<>
 			<h1>Journey Planner</h1>
-			{isLoading ? <p>Loading...</p> : ""}
-			{error ? <p>Error: {error}</p> : ""}
-			{journey ? <p>Results: {journey.length}</p> : ""}
+			{isLoading && <p>Loading...</p> }
+			{error && <p>Error: {error}</p>}
+			{journey && <p>Available Journey options: {journey.length}</p> }
 
-			{journey
-				? journey.map((leg) => {
-						return (
-							<ul>
-								<li>Options</li>
-								<li>{leg.duration}</li>
-								<li>{leg.fare.totalCost}</li>
-								<li>{leg.startDateTime && leg.startDateTime.toLocaleString()}</li>
-								<li>{leg.arrivalDateTime && leg.arrivalDateTime.toLocaleString()}</li>
-							</ul>
-						);
-				  })
-				: "No journey"}
+			{journey &&
+				journey.map((leg) => {
+					return <JourneyOption option={leg} />;
+				})}
 
 			<button onClick={() => handlePostcodeSet("NW5 1TL")}>
 				Set Start Postcode
