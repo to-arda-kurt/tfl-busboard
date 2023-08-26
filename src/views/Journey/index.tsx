@@ -43,17 +43,17 @@ function Journey() {
 	}, [fetchJourney, startPostCode]);
 
 	return (
-		<>
+		<section>
 			<h1>Journey Planner</h1>
 			{isLoading && <p>Loading...</p> }
 			{error && <p>Error: {error}</p>}
 
-			{journeys && <JourneyOptions journeys={journeys} /> }
+			{(journeys && !isLoading) && <JourneyOptions journeys={journeys} /> }
 
 			<button onClick={() => handlePostcodeSet("NW5 1TL")}>
 				Set Start Postcode
 			</button>
-		</>
+		</section>
 	);
 }
 

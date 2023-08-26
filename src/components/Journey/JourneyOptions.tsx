@@ -8,9 +8,9 @@ interface JourneyOptionsProps {
 function JourneyOptions({ journeys }: JourneyOptionsProps) {
 	return (
 		<>
-			<p>Available Journey options: {journeys.length} </p>
-			{journeys.map((option) => {
-				return <JourneyOption option={option} />;
+			<p>Available Journey Options: {journeys.length} </p>
+			{journeys.map((option, i) => {
+				return <JourneyOption key={i} option={option} optionNum={i+1} />;
 			})}
 		</>
 	);
