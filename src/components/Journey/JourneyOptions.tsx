@@ -1,8 +1,8 @@
-import { JourneyItem } from "@root/types/journey";
+import { JourneyOptionData } from "@root/types/journey";
 import JourneyOption from "./JourneyOption";
 
 interface JourneyOptionsProps {
-	journeys: JourneyItem[];
+	journeys: JourneyOptionData[];
 }
 
 function JourneyOptions({ journeys }: JourneyOptionsProps) {

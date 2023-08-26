@@ -1,7 +1,8 @@
-import { JourneyItem } from "@root/types/journey";
+import { JourneyOptionData } from "@root/types/journey";
+import JourneyLeg from "./JourneyLeg";
 
 interface JourneyOptionProps{
-    option:JourneyItem;
+    option:JourneyOptionData;
 }
 
 function JourneyOption({option}: JourneyOptionProps) {
@@ -14,6 +15,11 @@ function JourneyOption({option}: JourneyOptionProps) {
 			<li>
 				{option.arrivalDateTime && option.arrivalDateTime.toLocaleString()}
 			</li>
+            <li>
+            {option.legs.map((leg) => {
+				return <JourneyLeg leg={leg} />;
+			})}
+            </li>
 		</ul>
 	);
 }

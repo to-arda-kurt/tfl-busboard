@@ -1,26 +1,26 @@
 export interface JourneyResponse {
-	journeys: JourneyItem[];
+	journeys: JourneyOptionData[];
 }
 
-export interface JourneyItem {
+export interface JourneyOptionData {
 	duration: number;
 	startDateTime: Date;
 	arrivalDateTime: Date;
     totalCost: number;
-    legs: JourneyLegs[];
+    legs: JourneyLegData[];
     fare: JourneyFare;
 }
 
-export interface JourneyLegs {
+export interface JourneyLegData {
 	duration: number;
     departureTime: Date;
     arrivalTime: Date;
     distance: number;
-    instruction: LegInstruction;
+    instruction: LegInstructionData;
 
 }
 
-export interface LegInstruction{
+export interface LegInstructionData{
     summary: string;
     detailed: string;
 }

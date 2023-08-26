@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 
 import useTfl from "@root/utils/useTfl";
 import { isValidPostcode } from "@root/helper/validation";
-import { JourneyItem, JourneyResponse } from "@root/types/journey";
+import { JourneyOptionData, JourneyResponse } from "@root/types/journey";
 import JourneyOptions from "@root/components/Journey/JourneyOptions";
 
 export interface TFLResponse {}
 
 function Journey() {
-	const [journeys, setJourneys] = useState<JourneyItem[]>([]);
+	const [journeys, setJourneys] = useState<JourneyOptionData[]>([]);
 	const { isLoading, error, sendRequest: fetchJourney } = useTfl();
 
 	// const [startPostCode, setStartPostcode] = useState<string | null>(null);
@@ -24,7 +24,7 @@ function Journey() {
 
 	useEffect(() => {
 		const transformJourneyResponse = (data: JourneyResponse) => {
-			const loadedJourneys: Array<JourneyItem> = [];
+			const loadedJourneys: Array<JourneyOptionData> = [];
 
 			const journeys = data.journeys;
 
