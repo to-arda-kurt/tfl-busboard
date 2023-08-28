@@ -4,7 +4,7 @@ import type { Action } from '@root/types/context';
 import type { MainContextType } from '@root/types/context'
 
 
-const mainReducer = (state : MainContextType, action: Action) => {
+const mainReducer = (state: MainContextType, action: Action) => {
     switch (action.type) {
         case Types.SetPostcode:
             return {
@@ -24,10 +24,16 @@ const mainReducer = (state : MainContextType, action: Action) => {
                 center: action.payload,
             };
 
-            case Types.SetPosition:
+        case Types.SetPosition:
             return {
                 ...state,
                 position: action.payload,
+            };
+
+        case Types.SetBusstops:
+            return {
+                ...state,
+                busStops: action.payload,
             };
         default:
             return state;

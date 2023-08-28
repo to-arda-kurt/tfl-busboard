@@ -15,7 +15,7 @@ $secondarty-dark-gray: #3b3c3e;
 $desktop-max-width: 1440px;
 
 // App Widths
-$app-body: 95vw;
+$app-body: 100vw;
 
 :root {
   // Light Theme
@@ -30,7 +30,6 @@ $app-body: 95vw;
 }
 
 #root{
-  max-width: $app-body;
   margin: 0 auto;
   
 }

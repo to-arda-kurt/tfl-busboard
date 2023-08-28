@@ -1,3 +1,6 @@
+@use '../abstracts/mixins' as *;
+@use '../abstracts/theme' as *;
+
 /* required styles */
 .leaflet-pane,
 .leaflet-tile,
@@ -333,29 +336,32 @@ svg.leaflet-image-layer.leaflet-interactive path {
 /* general typography */
 .leaflet-container {
 	font: 1rem 'Kumbh Sans', sans-serif;
-	
+
 }
 
 
 /* general toolbar styles */
 
 .leaflet-bar {
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+	box-shadow: 0 1px 5px $primary-tfl-blue;
 	border-radius: 4px;
-	top:100px;
+	position: fixed;
+	bottom: 1.5rem;
+	left: 1.5rem;
+
 }
 
 .leaflet-bar a,
 .leaflet-bar a:hover {
 	background-color: #fff;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid $primary-tfl-blue;
 	width: 26px;
 	height: 26px;
 	line-height: 26px;
 	display: block;
 	text-align: center;
 	text-decoration: none;
-	color: black;
+	color: $primary-tfl-blue;
 }
 
 .leaflet-bar a,
@@ -366,7 +372,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
 }
 
 .leaflet-bar a:hover {
-	background-color: #f4f4f4;
+	background-color:$primary-bus-red;
+	color: $secondary-white;
 }
 
 .leaflet-bar a:first-child {
@@ -382,7 +389,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 .leaflet-bar a.leaflet-disabled {
 	cursor: default;
-	background-color: #f4f4f4;
+	background-color: $primary-tfl-blue;
 	color: #bbb;
 }
 
@@ -419,7 +426,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 /* layers control */
 
 .leaflet-control-layers {
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.67);
 	background: #fff;
 	border-radius: 5px;
 }

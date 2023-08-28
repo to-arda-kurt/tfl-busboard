@@ -11,10 +11,18 @@ interface Props {
 }
 
 const MainState = (props: Props) => {
+
     const setPostcode = (postcode: string): void => {
         dispatch({
             type: Types.SetPostcode,
             payload: postcode,
+        });
+    }
+
+    const setBusstops = (busStops: Array<Array<string | number>>): void => {
+        dispatch({
+            type: Types.SetBusstops,
+            payload: busStops,
         });
     }
 
@@ -31,7 +39,7 @@ const MainState = (props: Props) => {
             payload: position
         })
 
-        setPositionCoordinates(position);
+
     }
 
     const setPositionCoordinates = (position: { lat: number; lng: number }): void => {
@@ -44,20 +52,22 @@ const MainState = (props: Props) => {
             type: Types.SetPosition,
             payload: positionLatLng
         })
+
+        setCenterCoordinates(position);
     }
 
     const initialState: MainContextType = {
-        lat: '',
-        long: '',
         busses: [],
         postcode: '',
         loading: false,
-        center: { lat: 51.505, lng: -0.09 },
-        position: [51.505, -0.09],
+        center: { lat: 51.5072, lng: 0.1276 },
+        position: [51.5072, 0.1276],
+        busStops: [[]],
         setPostcode: setPostcode,
         setLoading: setLoading,
         setCenterCoordinates: setCenterCoordinates,
-        setPositionCoordinates: setPositionCoordinates
+        setPositionCoordinates: setPositionCoordinates,
+        setBusstops: setBusstops,
 
     };
 
@@ -67,17 +77,17 @@ const MainState = (props: Props) => {
     return (
         <MainContext.Provider
             value={{
-                lat: state.lat,
-                long: state.long,
                 busses: state.busses,
                 postcode: state.postcode,
                 loading: state.loading,
                 center: state.center,
                 position: state.position,
+                busStops: state.busStops,
                 setPostcode,
                 setLoading,
                 setCenterCoordinates,
-                setPositionCoordinates
+                setPositionCoordinates,
+                setBusstops
             }}
         >
             {props.children}

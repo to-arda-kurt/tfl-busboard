@@ -1,4 +1,4 @@
-import type { PostcodeInfoData } from '@root/types/postocde'
+import type { PostcodeInfoData } from '@root/types/postcode'
 
 export const getPostcodeInfo = async (postcode: string): Promise<PostcodeInfoData> => {
     const response = await fetch(

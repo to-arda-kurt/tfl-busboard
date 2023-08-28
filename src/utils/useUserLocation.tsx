@@ -35,10 +35,10 @@ function useUserLocation() {
 
     const success: PositionCallback = (position) => {
         const coordinate = position.coords;
-        // console.log("Your current position is:");
-        // console.log(`Latitude : ${coordinate.latitude}`);
-        // console.log(`Longitude: ${coordinate.longitude}`);
-        // console.log(`More or less ${coordinate.accuracy} meters.`);
+        console.log("Your current position is:");
+        console.log(`Latitude : ${coordinate.latitude}`);
+        console.log(`Longitude: ${coordinate.longitude}`);
+        console.log(`More or less ${coordinate.accuracy} meters.`);
         setLocation({
             ...location,
             latitude: coordinate.latitude,
@@ -49,7 +49,7 @@ function useUserLocation() {
     }
 
     const errors: PositionErrorCallback = (error) => {
-        // console.warn(`ERROR(${error.code}): ${error.message}`);
+        console.warn(`ERROR(${error.code}): ${error.message}`);
         setLocation({
             ...location,
             errors: {
