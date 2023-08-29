@@ -1,5 +1,9 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { makeRequest } from "./makeRequest";
+
+import mainContext from "@root/context/mainContext";
+
+import type { MainContextType } from "@root/types/context";
 
 // import { JourneyOptionData } from "@root/types/journey";
 
@@ -34,6 +38,7 @@ interface TflResponse<TResult> {
 	data?: TResult;
 }
 
+
 // const BASE_URL = "https://api.tfl.gov.uk";
 
 const useTfl = <TResult>(path: string): TflResponse<TResult> => {
@@ -41,10 +46,15 @@ const useTfl = <TResult>(path: string): TflResponse<TResult> => {
 	const [error, setError] = useState<null | string>(null);
 	const [data, setData] = useState<TResult>();
 
+	
+	const ctx = useContext(mainContext) as MainContextType;
+	const { setLoading } = ctx;
+
 	// useCallback( async () => {
 
 	useEffect(() => {
 		setIsLoading(true);
+		setLoading(true);
 		try {
 			const requestConfig = makeRequest(path);
 
@@ -85,6 +95,7 @@ const useTfl = <TResult>(path: string): TflResponse<TResult> => {
 			}
 		}
 		setIsLoading(false);
+		setLoading(false);
 	}, [path]);
 
 	return {
