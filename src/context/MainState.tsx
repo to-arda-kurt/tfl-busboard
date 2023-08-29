@@ -54,6 +54,7 @@ const MainState = (props: Props) => {
         })
 
         setCenterCoordinates(position);
+       
     }
 
     const initialState: MainContextType = {

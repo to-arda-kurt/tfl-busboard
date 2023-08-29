@@ -6,7 +6,7 @@ export interface JourneyOptionData {
 	duration: number;
 	startDateTime: Date;
 	arrivalDateTime: Date;
-    totalCost: number;
+    totalCost?: number;
     legs: JourneyLegData[];
     fare: JourneyFare;
 }
@@ -26,5 +26,5 @@ export interface LegInstructionData{
 }
 
 export interface JourneyFare{
-    totalCost: number
+    totalCost?: number
 }

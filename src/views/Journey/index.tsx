@@ -1,46 +1,67 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
-import {useContext } from "react";
+import { useContext } from "react";
 import useTfl from "@root/utils/useTFL";
 import { isValidPostcode } from "@root/helper/validation";
-import { JourneyOptionData, JourneyResponse } from "@root/types/journey";
+import { JourneyResponse } from "@root/types/journey";
 import JourneyOptions from "@root/components/Journey/JourneyOptions";
 
 import mainContext from "@root/context/mainContext";
 
 import type { MainContextType } from "@root/types/context";
 
-export interface TFLResponse {}
+export interface TFLResponse { }
 
 const Journey = () => {
-	const { isLoading, error, data } = useTfl<JourneyResponse>("/Journey/JourneyResults/NW5 1TL/to/HA1 1QA");
-
 	const ctx = useContext(mainContext) as MainContextType;
 	const { loading } = ctx;
+	const [path, setPath] = useState('');
+	const [validPostcode, setValidPostcode] = useState(false);
 
-	const [startPostCode, setStartPostcode] = useState<string | null>(
-		"SE1 9BG"
+	console.log('FROM JOURNEY')
+	console.log(loading);
+
+	const [postCodes, setPostcodes] = useState(
+		{
+			start: "",
+			end: ""
+		}
 	);
 
-	const handlePostcodeSet = (newPostCode: string) => {
-		if (isValidPostcode(newPostCode)) {
-			setStartPostcode(newPostCode);
+
+	console.log(`Before USETFL ${validPostcode}`);
+	const { isLoading, error, data } = useTfl<JourneyResponse>(path, validPostcode);
+
+	const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.value;
+
+		setPostcodes({
+			...postCodes,
+			[e.target.name]: value
+		})
+	}
+
+
+	useEffect(() => {
+		if (isValidPostcode(postCodes.start) && isValidPostcode(postCodes.end)) {
+			setPath(`/Journey/JourneyResults/${postCodes.start}/to/${postCodes.end}`);
+			setValidPostcode(true)
 		}
-	};
+	}, [postCodes])
+
 
 	return (
 		<section>
 			<h1>Journey Planner</h1>
-			{isLoading && <p>Loading...</p>}
-			{loading && <p>Context Loading...</p>}
+
+			<input type="text" onChange={onChangeHandler} name={`start`} value={postCodes.start} />
+			<input type="text" onChange={onChangeHandler} name={`end`} value={postCodes.end} />
 			{error && <p>Error: {error}</p>}
 
 			{data && !isLoading && <JourneyOptions journeys={data.journeys} />}
 
-			<button onClick={() => handlePostcodeSet("NW5 1TL")}>
-				Set Start Postcode
-			</button>
+
 		</section>
 	);
 }

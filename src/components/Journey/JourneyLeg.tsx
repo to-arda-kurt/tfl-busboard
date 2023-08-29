@@ -1,8 +1,8 @@
 import { JourneyLegData } from "@root/types/journey";
 
 interface JourneyLegProps{
-    leg:JourneyLegData;
-    legNum:number
+    leg: JourneyLegData;
+    legNum: number;
 }
 
 function JourneyLeg({leg, legNum}: JourneyLegProps) {

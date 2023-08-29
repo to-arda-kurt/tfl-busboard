@@ -17,7 +17,7 @@ function Mark({ center } : Props) {
 
     return (
         <Marker position={center} icon={ICON}>
-            <Popup>Hello world</Popup>
+            <Popup>You're here!</Popup>
         </Marker>
     )
 }

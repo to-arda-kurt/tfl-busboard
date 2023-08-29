@@ -34,28 +34,32 @@ const TflResponseMessages: { [key: string]: string } = {
 
 interface TflResponse<TResult> {
 	isLoading: boolean;
-	error?: any;
+	error?: string | null;
 	data?: TResult;
 }
 
 
 // const BASE_URL = "https://api.tfl.gov.uk";
 
-const useTfl = <TResult>(path: string): TflResponse<TResult> => {
+const useTfl = <TResult>(path: string, validPostcode: boolean): TflResponse<TResult> => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<null | string>(null);
 	const [data, setData] = useState<TResult>();
-
-	
 	const ctx = useContext(mainContext) as MainContextType;
 	const { setLoading } = ctx;
+
+
 
 	// useCallback( async () => {
 
 	useEffect(() => {
-		setIsLoading(true);
-		setLoading(true);
-		try {
+
+
+		if (validPostcode) {
+
+			setIsLoading(true);
+			setLoading(true);
+			
 			const requestConfig = makeRequest(path);
 
 			fetch(requestConfig.endpoint, {
@@ -81,22 +85,25 @@ const useTfl = <TResult>(path: string): TflResponse<TResult> => {
 						);
 					}
 					return response.json();
-				})
-				.then((result) => {
+				}).then((result) => {
 					setData(result);
+					setIsLoading(false);
+					setLoading(false);
+					setError('');
 				})
-				.catch(setError);
-
-			setData(data);
-		} catch (err: unknown) {
-			if (err instanceof Error) {
-				var errorMsg = err.message || "Something went wrong!";
-				setError(`Error in TFL request : ${errorMsg}`);
-			}
+				.catch(error => {
+					if (error instanceof Error) {
+						const errorMsg = error.message || "Something went wrong!";
+						setError(`Error in TFL request : ${errorMsg}`);
+						setIsLoading(false);
+						setLoading(false);
+					}
+				}
+				)
 		}
-		setIsLoading(false);
-		setLoading(false);
-	}, [path]);
+
+
+	}, [path, validPostcode]);
 
 	return {
 		isLoading,
