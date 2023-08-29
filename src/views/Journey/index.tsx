@@ -1,16 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-import useTfl from "@root/utils/useTfl";
+
+import useTfl from "@root/utils/useTFL";
 import { isValidPostcode } from "@root/helper/validation";
-import { JourneyOptionData } from "@root/types/journey";
+import { JourneyOptionData, JourneyResponse } from "@root/types/journey";
 import JourneyOptions from "@root/components/Journey/JourneyOptions";
 
 export interface TFLResponse {}
 
-function Journey() {
-	const [journeys, setJourneys] = useState<JourneyOptionData[]>([]);
-
-	const { isLoading, error, sendRequest: fetchJourney } = useTfl();
+const Journey = () => {
+	const { isLoading, error, data } = useTfl<JourneyResponse>("/Journey/JourneyResults/NW5 1TL/to/HA1 1QA");
 
 	const [startPostCode, setStartPostcode] = useState<string | null>(
 		"SE1 9BG"
@@ -22,20 +21,13 @@ function Journey() {
 		}
 	};
 
-	useEffect(() => {
-		fetchJourney(
-			{ endpoint: `/Journey/JourneyResults/${startPostCode}/to/HA1 1QA` },
-			setJourneys
-		);
-	}, [fetchJourney, startPostCode]);
-
 	return (
 		<section>
 			<h1>Journey Planner</h1>
 			{isLoading && <p>Loading...</p>}
 			{error && <p>Error: {error}</p>}
 
-			{journeys && !isLoading && <JourneyOptions journeys={journeys} />}
+			{data && !isLoading && <JourneyOptions journeys={data.journeys} />}
 
 			<button onClick={() => handlePostcodeSet("NW5 1TL")}>
 				Set Start Postcode

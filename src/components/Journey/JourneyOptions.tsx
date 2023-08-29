@@ -6,6 +6,7 @@ interface JourneyOptionsProps {
 }
 
 function JourneyOptions({ journeys }: JourneyOptionsProps) {
+	console.log(journeys);
 	return (
 		<>
 			<p>Available Journey Options: {journeys.length} </p>

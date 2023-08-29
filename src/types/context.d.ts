@@ -24,7 +24,10 @@ export type Action =
     | {type: 'SET_CENTER', payload: {lat: number; lng: number}}
     | {type: 'SET_POSITION', payload: number[]}
 
-    
+export type RequestType = 
+    | {type: 'BUS_STOP'} 
+    | {type: 'JOURNEY'}
+    | {type: 'ONCOMING_BUSES'}
 
 //     lat
 // : 
