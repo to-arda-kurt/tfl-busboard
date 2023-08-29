@@ -25,7 +25,10 @@ export type Action =
     | {type: 'SET_POSITION', payload: number[]}
     | {type: 'SET_BUSSTOPS', payload: Array<Array<string | number>>}
 
-    
+export type RequestType = 
+    | {type: 'BUS_STOP'} 
+    | {type: 'JOURNEY'}
+    | {type: 'ONCOMING_BUSES'}
 
 //     lat
 // : 
