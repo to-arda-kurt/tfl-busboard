@@ -11,6 +11,8 @@ import { getPostcodeInfo } from "@root/api/postcode";
 import { isValidPostcode } from "@root/helper/validation";
 
 
+
+
 function Map() {
     const ctx = useContext(mainContext) as MainContextType;
 
@@ -46,6 +48,8 @@ function Map() {
                 console.log(response);
                 setCenter({ lat: response.latitude, lng: response.longitude });
             }
+        } else {
+            console.log('not valid postcode')
         }
         setLoading(false);
 
