@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import mainContext from '@root/context/mainContext';
 import { MainContextType } from '@root/types/context';
+import { TbCurrentLocation } from "react-icons/tb";
 
 export default function Search() {
 
@@ -17,10 +18,11 @@ export default function Search() {
   }
 
   return (
-    <>
-      <input type="text" name="text" autoComplete="off" required onChange={onChangeHandler} />
-      <button onClick={() => onLocationHandler()}>Use Loc</button>
-    </>
+    <div className='Search'>
+      <input className="Search--input" type="text" name="text" autoComplete="off" required onChange={onChangeHandler} />
+      <button className="Search--btn" onClick={() => onLocationHandler()}><TbCurrentLocation /></button>
+    </div>
+
 
   )
 }

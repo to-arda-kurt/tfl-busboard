@@ -1,0 +1,41 @@
+@use '../abstracts/theme' as *;
+
+.Search {
+    flex-grow: 1;
+    position: relative;
+
+    &--input {
+        background: white;
+        border: 2px solid white;
+        border-radius: 1rem;
+        padding: 1rem 2rem;
+        width: 100%;
+        font-size: 1.6rem;
+        font-weight: 500;
+
+        &:focus {
+            outline: 2px solid $primary-bus-red;
+        }
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+    }
+
+    &--btn {
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $primary-tfl-blue;
+        color: $primary-bus-red;
+        border-radius: 50px;
+        aspect-ratio: 1;
+        height: 80%;
+        position: absolute;
+        top: 10%;
+        right: 5px;
+
+    }
+}
