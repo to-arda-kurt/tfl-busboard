@@ -1,0 +1,70 @@
+@use '../abstracts/mixins' as *;
+@use '../abstracts/theme' as *;
+
+.BusStopMarker {
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+
+    &--header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+
+
+        &__indicator {
+            background-color: $primary-bus-red;
+            border-radius: 50%;
+            color: $secondary-white;
+            height: 30px;
+            width: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &__name {
+            font-size: 13px;
+
+        }
+    }
+
+
+    &--oncomingbusses {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        justify-content: space-between;
+
+    
+        li {
+            display: flex;
+            gap: 1rem;
+            padding: 0.4rem 0.4rem;
+            
+
+            span {
+                flex: 1
+            }
+
+            span:nth-child(1) {
+
+                text-align: right;
+            }
+
+            span:nth-child(2) {
+                flex-grow: 8;
+            }
+
+            &:hover {
+                background-color: $primary-bus-red ;
+                cursor: pointer;
+                border-radius: 5px;
+                color: $secondary-white;
+                
+            }
+        }
+    }
+}

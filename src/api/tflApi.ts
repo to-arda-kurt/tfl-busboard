@@ -13,7 +13,8 @@ interface StopPointResponse {
     commonName: string;
     naptanId: string;
     lat: number;
-    lon: number
+    lon: number;
+    stopLetter: string;
 }
 
 
@@ -29,7 +30,7 @@ export const getBusStopPointsbyLonLat = (async (lat: number, lng: number) => {
     const data = await response.json();
     console.log(data)
     await data.stopPoints.slice(0, 15)
-        .map((stopPoint: StopPointResponse) => busStops.push({ indicator: stopPoint.indicator, commonName: stopPoint.commonName, naptanId: stopPoint.naptanId, lat: stopPoint.lat, lon: stopPoint.lon }))
+        .map((stopPoint: StopPointResponse) => busStops.push({ indicator: stopPoint.indicator, commonName: stopPoint.commonName, naptanId: stopPoint.naptanId, lat: stopPoint.lat, lon: stopPoint.lon, stopLetter:stopPoint.stopLetter }))
 
 
     return await busStops

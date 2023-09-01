@@ -15,7 +15,8 @@ export interface StopPointResponse {
     commonName: string;
     naptanId: string;
     lat: number;
-    lon: number
+    lon: number;
+    stopLetter:string;
 }
 
 export interface IOnComingBuses {

@@ -1,8 +1,8 @@
 // Primary Colors
-$primary-bus-red: rgb(225,37,27);
-$primary-tfl-blue: rgb(0,15,159);
-$primary-tfl-yellow: rgb(255, 205,0);
-$primary-tfl-green: rgb(0,121,52);
+$primary-bus-red: rgb(225, 37, 27);
+$primary-tfl-blue: rgb(0, 15, 159);
+$primary-tfl-yellow: rgb(255, 205, 0);
+$primary-tfl-green: rgb(0, 121, 52);
 
 
 // Secondary Colors
@@ -17,19 +17,21 @@ $desktop-max-width: 1440px;
 // App Widths
 $app-body: 100vw;
 
+
+
 :root {
   // Light Theme
   --background: $secondary-light-gray;
   --text: $primary-light-violet;
-  
+
   // Dark Theme
   &[data-theme='dark'] {
     --background: $primary-midnight;
     --text: $secondarty-dark-gray;
-  } 
+  }
 }
 
-#root{
+#root {
   margin: 0 auto;
-  
+
 }

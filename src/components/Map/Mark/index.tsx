@@ -1,4 +1,4 @@
-import { Marker, Popup } from "react-leaflet"
+import { Circle, Marker, Popup } from "react-leaflet"
 import { icon } from "leaflet";
 import type { Center } from "@root/types/context";
 
@@ -17,9 +17,13 @@ function Mark({ center }: Props) {
 
 
     return (
-        <Marker position={center} icon={ICON}>
-            <Popup>You're here!</Popup>
-        </Marker>
+        <>
+            <Circle center={center} weight={1} color={'red'} fillColor={'red'} fillOpacity={0.2} radius={600}></Circle>
+            <Marker position={center} icon={ICON}>
+                <Popup>You're here!</Popup>
+            </Marker>
+        </>
+
     )
 }
 

@@ -1,4 +1,4 @@
-import { Marker, Popup} from "react-leaflet"
+import { Marker, Popup } from "react-leaflet"
 import { icon } from "leaflet";
 import { IOnComingBuses, StopPointResponse } from "@root/types/app";
 import { useEffect, useState } from "react";
@@ -20,8 +20,8 @@ type Props = {
 
 
 
-function BusStopMarker({ busStop } : Props) {
-   
+function BusStopMarker({ busStop }: Props) {
+
 
     const [onComingBuses, setOncomingBuses] = useState<IOnComingBuses[]>();
 
@@ -34,20 +34,25 @@ function BusStopMarker({ busStop } : Props) {
     useEffect(() => {
 
     }, [])
-        
+
 
     return (
         <Marker position={{ lat: busStop.lat, lng: busStop.lon }} icon={ICON} eventHandlers={{
             click: () => {
                 onComingBusesHandler()
             },
-          }}>
-            <Popup>{busStop.indicator} - {busStop.commonName}
+        }}>
+            <Popup>
+                <div className="BusStopMarker">
+                    <div className="BusStopMarker--header">
+                        <div className="BusStopMarker--header__indicator">{busStop.stopLetter ? busStop.stopLetter : 'BUS'}</div>
+                        <div className="BusStopMarker--header__name">{busStop.commonName}</div>
+                    </div>
 
-                    {/* Component here to send all buss information */}
-                    {onComingBuses && <OnComingBuses onComingBuses={onComingBuses} /> }
+                    
+                    {onComingBuses && <OnComingBuses onComingBuses={onComingBuses} />}
+                </div>
 
-            
             </Popup>
         </Marker>
     )

@@ -5,18 +5,21 @@ type Props = {
 }
 
 
-
 function OnComingBuses({ onComingBuses }: Props) {
+
+
+
     console.log(onComingBuses)
     return (
         <>
 
-            {onComingBuses.length ? onComingBuses.map(bus => {
-                return <div>{bus.lineName} - {bus.destinationName} - {Math.floor((bus.timeToStation/60))} mins</div>
+            <ul className="BusStopMarker--oncomingbusses">
+                {onComingBuses.length ? onComingBuses.map((bus, i) => {
+                    return <li key={`${bus.lineName} ${i}`}><span>{bus.lineName}</span> <span>{bus.destinationName}</span> <span>{Math.floor((bus.timeToStation / 60)) < 1 ? 'due' : `${Math.floor((bus.timeToStation / 60))}"`}</span> </li>
 
-            }) :
-                <p>No bus soon, go away!</p>}
-
+                }) :
+                    <p>No bus soon, go away!</p>}
+            </ul>
         </>
     )
 }

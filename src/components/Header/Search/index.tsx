@@ -9,7 +9,7 @@ export default function Search() {
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setPostcode(e.target.value);
-    setLocationSource("poscodeSearch")
+    setLocationSource("postcodeSearch")
   }
 
   const onLocationHandler = () => {
