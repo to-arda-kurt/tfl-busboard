@@ -6,13 +6,8 @@ import { useContext, useEffect, useState } from 'react';
 import UserLocation from '@root/components/Map/UserLocation';
 import { getBusStopPointsbyLonLat } from '@root/api/tflApi';
 import BusStopMarker from '@root/components/Map/BusStopMarker';
-interface StopPointResponse {
-    indicator: string;
-    commonName: string;
-    naptanId: string;
-    lat: number;
-    lon: number
-}
+import { StopPointResponse } from '@root/types/app';
+
 
 
 function Map() {
