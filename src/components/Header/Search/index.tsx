@@ -14,8 +14,13 @@ export default function Search() {
 
 
 
-  const notify = () => toast.error(`Postcode is not valid, please check your postcode`);
-  const success = () => toast.success('Thanks, I am taking you now, hold tight!')
+  const notify = () => toast.error(`Postcode is not valid, please check your postcode`, {
+    iconTheme: {
+      primary: 'red',
+      secondary: '#FFFAEE',
+    },
+  });
+  const success = () => toast.success('Thanks, Finding Nearest Busses!')
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setPostcode(e.target.value);
@@ -39,7 +44,13 @@ export default function Search() {
 
   return (
     <div className='Search'>
-      <Toaster position="top-right" />
+
+      <Toaster position="top-center" containerStyle={{
+        top: 74,
+        left: 0,
+        bottom:0,
+        right: 0
+      }} />
       <input className="Search--input" type="text" name="text" autoComplete="off" required onChange={onChangeHandler} />
       <button className="Search--btn" onClick={() => onLocationHandler()}><TbCurrentLocation /></button>
     </div>
