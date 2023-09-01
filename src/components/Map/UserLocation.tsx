@@ -1,35 +1,30 @@
 import { useEffect, useState } from "react";
-import { useMap } from "react-leaflet";
+import { useMap, useMapEvents } from "react-leaflet";
 import Mark from "./Mark";
 import type { Center } from "@root/types/context";
-
+import { LatLngTuple } from "leaflet";
 
 type Props = {
-    center: Center
-}
+	center: Center;
+};
 const UserLocation = ({ center }: Props) => {
-    const map = useMap();
-    
-    const [position, setPosition] = useState<Center | null>(null)
+	const map = useMap();
 
+	useEffect(() => {
+		const bounds:LatLngTuple = [center.lat, center.lng]
 
-    useEffect(() => {
-        map.locate({
-            setView: true
-        })
-        map.on('locationfound', () => {
-            setPosition(center)
-        })
-    }, [center,map])
+		console.log(`flying to ${center.lat} , ${center.lng} `)
+		map.flyToBounds([bounds]);
 
+		// map.setView(bounds)
 
-    return position
-        ? (
-            <>
-                <Mark center={center} />
-            </>
-        )
-        : null
-}
+	}, [center, map]);
 
-export default UserLocation
+	return center ? (
+		<>
+			<Mark center={center} />
+		</>
+	) : null;
+};
+
+export default UserLocation;

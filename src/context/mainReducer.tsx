@@ -6,6 +6,11 @@ import type { MainContextType } from '@root/types/context'
 
 const mainReducer = (state: MainContextType, action: Action) => {
     switch (action.type) {
+        case Types.SetLocationSource:
+            return {
+                ...state,
+                locationSource: action.payload,
+            };
         case Types.SetPostcode:
             return {
                 ...state,

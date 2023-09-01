@@ -5,7 +5,8 @@ export const getPostcodeInfo = async (postcode: string): Promise<PostcodeInfoDat
         `https://api.postcodes.io/postcodes/${postcode}`
     )
 
-    return await response.json()
+    const data = await response.json()
+    return data.result;
 
 }
 

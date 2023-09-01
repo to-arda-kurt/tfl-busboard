@@ -12,6 +12,13 @@ interface Props {
 
 const MainState = (props: Props) => {
 
+    const setLocationSource = (locationSource: string):void => {
+        dispatch({
+            type: Types.SetLocationSource,
+            payload: locationSource,
+        });
+    }
+
     const setPostcode = (postcode: string): void => {
         dispatch({
             type: Types.SetPostcode,
@@ -58,12 +65,15 @@ const MainState = (props: Props) => {
     }
 
     const initialState: MainContextType = {
+        locationSource: "",
         busses: [],
         postcode: '',
         loading: false,
         center: { lat: 51.5072, lng: 0.1276 },
         position: [51.5072, 0.1276],
         busStops: [[]],
+
+        setLocationSource: setLocationSource,
         setPostcode: setPostcode,
         setLoading: setLoading,
         setCenterCoordinates: setCenterCoordinates,
@@ -78,12 +88,14 @@ const MainState = (props: Props) => {
     return (
         <MainContext.Provider
             value={{
+                locationSource: state.locationSource,
                 busses: state.busses,
                 postcode: state.postcode,
                 loading: state.loading,
                 center: state.center,
                 position: state.position,
                 busStops: state.busStops,
+                setLocationSource,
                 setPostcode,
                 setLoading,
                 setCenterCoordinates,

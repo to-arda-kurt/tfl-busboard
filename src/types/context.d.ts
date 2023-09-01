@@ -1,10 +1,12 @@
 export type MainContextType = {
+    locationSource: string,
     busses: Array,
     postcode: string,
     loading: boolean,
     center: Center,
     position: number[],
     busStops: Array<Array<string, string, string, number, number>>,
+    setLocationSource: (locationSource: string) => void,
     setPostcode: (postcode: string) => void,
     setLoading: (p: boolean) => void,
     setCenterCoordinates: (p: Center) => void,
@@ -19,6 +21,7 @@ export type Center = {
 
 
 export type Action = 
+    | {type: 'SET_LOCATIONSOURCE', payload: string} 
     | {type: 'SET_POSTCODE', payload: string} 
     | {type: 'SET_LOADING', payload: boolean}
     | {type: 'SET_CENTER', payload: {lat: number; lng: number}}

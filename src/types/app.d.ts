@@ -1,10 +1,11 @@
 export interface PostcodeInfoData {
-    
+    latitude: number;
+    longitude: number;
 }
 
 export type PositionType = {
     lat: number,
-    long: number,
+    lng: number,
 }
 
 
