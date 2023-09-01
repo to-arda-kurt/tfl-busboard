@@ -1,7 +1,10 @@
 import { Marker, Popup} from "react-leaflet"
 import { icon } from "leaflet";
-import { StopPointResponse } from "@root/types/app";
-// import { useState } from "react";
+import { IOnComingBuses, StopPointResponse } from "@root/types/app";
+import { useEffect, useState } from "react";
+import { getOnComingBusses } from "@root/api/tflApi";
+import OnComingBuses from "../OnComingBuses";
+
 
 
 
@@ -15,13 +18,37 @@ type Props = {
 }
 
 
+
+
 function BusStopMarker({ busStop } : Props) {
    
-    // const[onComingBusses, setOncomingBusses] = useState();
+
+    const [onComingBuses, setOncomingBuses] = useState<IOnComingBuses[]>();
+
+    const onComingBusesHandler = async () => {
+        const response = await getOnComingBusses(busStop.naptanId)
+        console.log(response)
+        setOncomingBuses(response);
+    }
+
+    useEffect(() => {
+
+    }, [])
+        
 
     return (
-        <Marker position={{ lat: busStop.lat, lng: busStop.lon }} icon={ICON}>
-            <Popup>{busStop.indicator} - {busStop.commonName}</Popup>
+        <Marker position={{ lat: busStop.lat, lng: busStop.lon }} icon={ICON} eventHandlers={{
+            click: () => {
+                onComingBusesHandler()
+            },
+          }}>
+            <Popup>{busStop.indicator} - {busStop.commonName}
+
+                    {/* Component here to send all buss information */}
+                    {onComingBuses && <OnComingBuses onComingBuses={onComingBuses} /> }
+
+            
+            </Popup>
         </Marker>
     )
 }

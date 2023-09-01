@@ -9,10 +9,17 @@ export type PositionType = {
 
 
 
-interface StopPointResponse {
+export interface StopPointResponse {
     indicator: string;
     commonName: string;
     naptanId: string;
     lat: number;
     lon: number
+}
+
+export interface IOnComingBuses {
+    lineName: string;
+    timeToStation: number;
+    destinationName : string;
+    towards : string;
 }
