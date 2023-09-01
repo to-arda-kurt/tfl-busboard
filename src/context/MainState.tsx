@@ -53,8 +53,8 @@ const MainState = (props: Props) => {
             payload: positionLatLng
         })
 
-        setCenterCoordinates(position);
-       
+
+
     }
 
     const initialState: MainContextType = {

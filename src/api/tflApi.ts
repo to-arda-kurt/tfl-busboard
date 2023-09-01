@@ -6,13 +6,39 @@ const OPTIONS = {
     mode_names: true
 }
 
-export const getBusStopPointsbyLonLat = (async (lat: number, lng: number) => {
-    const response = await fetch(`https://api.tfl.gov.uk/StopPoint?lat=${lat}&lon=${lng}&stopTypes=${OPTIONS.stopTypes}&radius=${OPTIONS.radius}&app_key=${apiKey}`)
-    const body = await response.json()
-    const stopPointsData = await body.stopPoints;
-    const data = stopPointsData.slice(0, 15).map((stopPoint: { indicator: string; commonName: string; naptanId: string; lat: number; lon: number; }) => [stopPoint.indicator, stopPoint.commonName, stopPoint.naptanId, stopPoint.lat, stopPoint.lon]);
+interface StopPointResponse {
+    indicator: string;
+    commonName: string;
+    naptanId: string;
+    lat: number;
+    lon: number
+}
 
-    return data;
+
+
+export const getBusStopPointsbyLonLat = (async (lat: number, lng: number) => {
+    console.log(lat, lng)
+
+    if (lat === 0 && lng === 0) {
+        return false;
+    }
+
+    const busStops: StopPointResponse[] = [];
+
+    const response = await fetch(`https://api.tfl.gov.uk/StopPoint?lat=${lat}&lon=${lng}&stopTypes=${OPTIONS.stopTypes}&radius=${OPTIONS.radius}&app_key=${apiKey}`)
+    const data = await response.json();
+    console.log(data)
+    await data.stopPoints.slice(0, 15)
+        .map((stopPoint: StopPointResponse) => busStops.push({ indicator: stopPoint.indicator, commonName: stopPoint.commonName, naptanId: stopPoint.naptanId, lat: stopPoint.lat, lon: stopPoint.lon }))
+
+
+
+    return await busStops
+
+
+
+
+
 
 });
 

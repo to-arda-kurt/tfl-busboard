@@ -1,4 +1,4 @@
-import { Marker, Popup} from "react-leaflet"
+import { Marker, Popup } from "react-leaflet"
 import { icon } from "leaflet";
 import type { Center } from "@root/types/context";
 
@@ -9,10 +9,11 @@ const ICON = icon({
 
 type Props = {
     center: Center;
+
 }
 
 
-function Mark({ center } : Props) {
+function Mark({ center }: Props) {
 
 
     return (

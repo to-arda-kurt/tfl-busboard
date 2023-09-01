@@ -4,7 +4,7 @@ export type MainContextType = {
     loading: boolean,
     center: Center,
     position: number[],
-    busStops: Array<Array<string | number>>,
+    busStops: Array<Array<string, string, string, number, number>>,
     setPostcode: (postcode: string) => void,
     setLoading: (p: boolean) => void,
     setCenterCoordinates: (p: Center) => void,
