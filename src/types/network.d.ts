@@ -4,3 +4,7 @@ export interface RequestConfig {
 	headers?: Headers;
 	body?: string;
 }
+
+export interface NetworkResponse{
+	
+}
