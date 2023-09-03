@@ -1,4 +1,5 @@
 import { StopPointResponse } from "@root/types/app";
+import { IOnComingBuses } from "@root/types/app";
 
 export const parseStopPointData = (data: any) => {
 	const busStops: StopPointResponse[] = [];
@@ -14,3 +15,14 @@ export const parseStopPointData = (data: any) => {
 	);
 	return busStops;
 };
+
+export const parseOncomingBusData = (data:any) => {
+    const oncomingBuses = data
+    .sort(
+        (a: IOnComingBuses, b: IOnComingBuses) =>
+            a.timeToStation - b.timeToStation
+    )
+    .slice(0, 5);
+
+    return oncomingBuses
+}
