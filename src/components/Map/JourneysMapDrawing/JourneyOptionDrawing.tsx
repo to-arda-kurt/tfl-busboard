@@ -8,25 +8,16 @@ interface JourneyOptionDrawingProps {
 }
 
 const JourneyOptionDrawing = ({ option }: JourneyOptionDrawingProps) => {
-	const lineOptions = { color: "lime", fillColor: 'blue' };
+	const lineOptions = { color: "lime", fillColor: "blue" };
 
-	if (option.legs.length > 1) {
-		const legOne: LatLngExpression[] = [
-			[
-				option.legs[0].departurePoint.lat,
-				option.legs[0].departurePoint.lon,
-			],
-			[
-				option.legs[1].departurePoint.lat,
-				option.legs[1].departurePoint.lon,
-			],
-		];
+	const legs: LatLngExpression[] = [];
 
-		console.log(`Leg One: ${legOne}`);
+	option.legs.forEach((leg) => {
+		legs.push([leg.departurePoint.lat, leg.departurePoint.lon]);
+	});
+    console.log(`legs: ${legs}`)
 
-		return <Polyline pathOptions={lineOptions} positions={legOne} />;
-	}
-
+	return <Polyline pathOptions={lineOptions} positions={legs} />;
 };
 
 export default JourneyOptionDrawing;
