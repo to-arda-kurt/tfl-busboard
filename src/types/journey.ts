@@ -17,6 +17,7 @@ export interface JourneyLegData {
     arrivalTime: Date;
     distance: number;
     instruction: LegInstructionData;
+    departurePoint: DeparturePoint;
 
 }
 
@@ -27,4 +28,9 @@ export interface LegInstructionData{
 
 export interface JourneyFare{
     totalCost?: number
+}
+
+interface DeparturePoint{
+    lat: number,
+    lon: number
 }

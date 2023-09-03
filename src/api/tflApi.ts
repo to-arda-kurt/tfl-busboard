@@ -22,6 +22,7 @@ export const getBusStopPointsbyLonLat = async (lat: number, lng: number) => {
 
 	if (errorMessage) {
 		console.log(errorMessage);
+		return false;
 	} else {
 		const busStops = parseStopPointData(data);
 	    return busStops;

@@ -6,8 +6,6 @@ import { getOnComingBusses } from "@root/api/tflApi";
 import OnComingBuses from "../OnComingBuses";
 
 
-
-
 const ICON = icon({
     iconUrl: "./assets/bus-stop.png",
     iconSize: [36, 36],
@@ -16,8 +14,6 @@ const ICON = icon({
 type Props = {
     busStop: StopPointResponse
 }
-
-
 
 
 function BusStopMarker({ busStop }: Props) {
