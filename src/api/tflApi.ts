@@ -1,6 +1,6 @@
 import handleRequest from "@root/utils/handleRequest";
 import { makeRequest } from "@root/utils/useTFL/makeTFLEndpoint";
-import { parseOncomingBusData, parseStopPointData } from "@root/helper/parseApiResponse";
+import { parseOnComingBusData, parseStopPointData } from "@root/helper/parseApiResponse";
 
 const apiKey = import.meta.env.VITE_TFL_API_KEY;
 
@@ -37,7 +37,7 @@ export const getOnComingBusses = async (naptanId: string) => {
 	if (errorMessage) {
 		console.log(errorMessage);
 	} else {
-		const oncomingBuses = parseOncomingBusData(data);
+		const oncomingBuses = parseOnComingBusData(data);
 	    return oncomingBuses;
 	}
 };

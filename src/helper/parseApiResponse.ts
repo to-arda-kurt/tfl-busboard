@@ -16,7 +16,7 @@ export const parseStopPointData = (data: any) => {
 	return busStops;
 };
 
-export const parseOncomingBusData = (data:any) => {
+export const parseOnComingBusData = (data:any) => {
     const oncomingBuses = data
     .sort(
         (a: IOnComingBuses, b: IOnComingBuses) =>
