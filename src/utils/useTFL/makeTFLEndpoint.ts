@@ -1,13 +1,10 @@
-import { RequestConfig } from "@root/utils/useTFL";
+import { RequestConfig } from "@root/types/network";
 
 export interface MakeRequestParams {
     path: string;
 }
 
-// export interface MakeRequestParams{
-//     action: RequestType;
-//     params: string[];
-// }
+// const BASE_URL = "https://api.tfl.gov.uk";
 
 export const makeRequest = (path: string) => {
 
