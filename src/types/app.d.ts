@@ -8,8 +8,6 @@ export type PositionType = {
     lng: number,
 }
 
-
-
 export interface StopPointResponse {
     indicator: string;
     commonName: string;
